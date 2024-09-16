@@ -37,7 +37,7 @@ A aplicação utiliza uma API para obter os dados nutricionais dos produtos alim
 1. **Sugestão de Nomes e Pesquisa por ID de Produto Selecionado**: Adicionar funcionalidades para sugerir nomes de produtos com base na entrada do usuário e permitir a pesquisa por ID do produto selecionado (melhorando a eficiencia da pesquisa).
 2. **Exportação**: Implementar opções para exportar os resultados em formatos como CSV ou PDF.
 3. **Melhorar Interface**: Aperfeiçoar a interface com designs mais responsivos e intuitivos para uma melhor experiência do usuário.
-4. **Pesquisar em outros idiomas (português e espanhol).
+4. **Pesquisar em outros idiomas**: Adicionar configuração para português e espanhol.
 
 ## Como usar
 
