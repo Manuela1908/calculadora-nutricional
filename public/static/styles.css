@@ -1,0 +1,191 @@
+/* Estilo para o contêiner principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+}
+
+#produtosForm{
+    border: 2px solid #4CAF50;
+    padding: 20px 5px 10px 5px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+/* Estilo para o título */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o formulário */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha horizontalmente o conteúdo do formulário */
+    gap: 10px;
+    margin-bottom: 50px;
+    max-width: 100%; /* Garante que o formulário não ultrapasse o contêiner */
+}
+
+.form-item {
+    display: flex;
+    align-items: center; /* Alinha itens verticalmente no centro */
+    gap: 10px; /* Espaçamento entre os itens dentro do form-item */
+    width: 100%; /* Faz o item ocupar toda a largura do contêiner do formulário */
+    max-width: 600px; /* Limita a largura máxima dos itens do formulário */
+}
+
+/* Estilo para os campos de entrada do formulário */
+input[type="text"],
+input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilo para os botões */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.remover {
+    width: 40px; /* Largura fixa do botão */
+    height: 40px; /* Altura fixa do botão */
+    background-color: #f80707; /* Cor de fundo */
+    background-image: url('lixeira-fechada.png'); /* Imagem de fundo */
+    background-size: 20px 20px; /* Tamanho da imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
+    border: none; /* Remove a borda padrão do botão */
+    border-radius: 5px; /* Bordas arredondadas (opcional) */
+    cursor: pointer; /* Muda o cursor quando passa sobre o botão */
+    padding: 0; /* Remove padding interno */
+    margin-left: 10px; /* Espaçamento à esquerda do botão */
+}
+
+.remover:hover{
+    background-color: #f80707;
+    background-image: url('lixeira-aberta.png');
+    background-size: 30px 30px;
+}
+
+/* Estilo para o botão ao passar o mouse */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para o contêiner de resultados */
+#resultContainer {
+    margin: 20px;
+    position: relative; /* O spinner agora será posicionado relativo a essa div */
+
+}
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Estilo para as células da tabela */
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+/* Estilo para o cabeçalho da tabela */
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Estilo para linhas pares da tabela */
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para o hover sobre as linhas da tabela */
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para o contêiner dos totais */
+#totalNutrients {
+    margin: 20px;
+    font-size: 16px;
+}
+
+/* Estilo para os parágrafos dentro do contêiner de totais */
+#totalNutrients p {
+    margin: 5px 0;
+}
+.spinner {
+    width: 40px; /* Tamanho do spinner */
+    height: 40px;
+    border: 4px solid #f3f3f3; /* Cor de fundo do spinner */
+    border-top: 4px solid #1cffbb; /* Cor da borda superior */
+    border-radius: 50%; /* Forma circular */
+    animation: spin 1s linear infinite; /* Animação de rotação */
+    margin: 20px auto; /* Centraliza o spinner horizontalmente e adiciona espaço acima e abaixo */
+}
+
+/* Animação de rotação */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ocultar o spinner por padrão */
+.hidden {
+    display: none;
+}
+
+.message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000; /* Garantir que a mensagem esteja acima de outros elementos */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    background-color: #721c24;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #dd3646;
+}
+
+.hidden {
+    display: none;
+}

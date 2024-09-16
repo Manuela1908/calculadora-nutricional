@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculo Receita</h1>
+        <h3>Pesquise em inglês :c</h3>
+        <form id="produtosForm">
+            <div id="formContainer" class="form">
+                <!-- Campos de formulário serão adicionados aqui -->
+                <!-- Produtos adicionados serão exibidos aqui -->
+            </div>
+            <button type="button" id="adicionar">+ Item</button>
+            <button type="button" id="calcular">Calcular</button>
+        </form>
+    </div>
+    
+    <div id="resultContainer">
+        
+        <!-- Resultados serão exibidos aqui -->
+    </div>
+    <div id="loadingSpinner" class="spinner hidden"></div>
+    <div id="messageContainer" class="message hidden">
+        <span id="messageText"></span>
+        <button id="closeMessage" class="close-button">X</button>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
