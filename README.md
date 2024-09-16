@@ -38,4 +38,5 @@ A aplicação utiliza uma API para obter os dados nutricionais dos produtos alim
 2. **Exportação**: Implementar opções para exportar os resultados em formatos como CSV ou PDF.
 3. **Melhorar Interface**: Aperfeiçoar a interface com designs mais responsivos e intuitivos para uma melhor experiência do usuário.
 
-
+##Como usar
+  Acesse https://calculadora-nutricional-bice.vercel.app/
