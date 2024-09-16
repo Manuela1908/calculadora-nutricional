@@ -17,8 +17,24 @@
 
 /* Estilo para o título */
 h1 {
+    color: #01a17f;
     text-align: center;
     margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px; /* Ajuste o valor conforme necessário */
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 0.9em; /* Reduz o tamanho da fonte */
+    font-weight: normal; /* Ajusta o peso da fonte para normal */
+    color: #666; /* Define uma cor mais suave */
+    margin-top: 0; /* Remove o espaçamento acima do <h4> se necessário */
 }
 
 /* Estilo para o formulário */
