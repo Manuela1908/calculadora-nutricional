@@ -131,22 +131,31 @@ button:hover {
 /* Estilo para o contêiner de resultados */
 #resultContainer {
     margin: 20px;
-    position: relative; /* O spinner agora será posicionado relativo a essa div */
+    position: relative; /* O spinner será posicionado relativo a essa div */
+}
+
+/* Adiciona um contêiner para a tabela com rolagem horizontal */
+.table-wrapper {
+    overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+    -webkit-overflow-scrolling: touch; /* Habilita rolagem suave em iOS */
+    margin: 0; /* Remove margem para evitar espaçamento extra */
+    padding: 0; /* Remove padding para evitar espaçamento extra */
 }
 
 /* Estilo para a tabela */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
     font-size: 16px;
     text-align: left;
+    min-width: 600px; /* Define uma largura mínima para a tabela */
 }
 
 /* Estilo para as células da tabela */
 table th, table td {
     border: 1px solid #ddd;
     padding: 12px;
+    box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura */
 }
 
 /* Estilo para o cabeçalho da tabela */
@@ -245,6 +254,55 @@ table tr:hover {
 /* Ajustes para telas pequenas */
 /* Ajustes para telas pequenas */
 @media (max-width: 768px) {
+    #resultContainer {
+        margin: 20px;
+        position: relative; /* O spinner será posicionado relativo a essa div */
+        overflow-x: auto; /* Adiciona rolagem horizontal ao contêiner */
+    }
+    
+    /* Adiciona um contêiner para a tabela com rolagem horizontal */
+    .table-wrapper {
+        overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+        -webkit-overflow-scrolling: touch; /* Habilita rolagem suave em iOS */
+        margin: 0; /* Remove margem para evitar espaçamento extra */
+        padding: 0; /* Remove padding para evitar espaçamento extra */
+        width: 100%; /* Faz com que o wrapper ocupe toda a largura do contêiner */
+    }
+    
+    /* Estilo para a tabela */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 16px;
+        text-align: left;
+        min-width: 300px; /* Define uma largura mínima para a tabela */
+        max-width: 100%; /* Limita a largura máxima da tabela ao contêiner */
+        box-sizing: border-box; /* Inclui bordas e padding no cálculo da largura */
+    }
+    
+    /* Estilo para as células da tabela */
+    table th, table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        box-sizing: border-box; /* Inclui padding e bordas no cálculo da largura */
+    }
+    
+    /* Estilo para o cabeçalho da tabela */
+    table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    
+    /* Estilo para linhas pares da tabela */
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    /* Estilo para o hover sobre as linhas da tabela */
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
     #produtosForm {
         width: 100%; /* Ajusta a largura do formulário para ocupar toda a tela */
         padding: 10px; /* Ajusta o padding para se adequar a telas menores */
@@ -317,3 +375,4 @@ table tr:hover {
         background-size: 25px 25px;
     }
 }
+
