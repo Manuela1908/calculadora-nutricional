@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     let itemCount = 1;
     const spinner = document.getElementById('loadingSpinner');
+    const messageContainer = document.getElementById('messageContainer');
+    const messageText = document.getElementById('messageText');
 
     // Função para adicionar novo formulário
     const adicionarItem = () => {
@@ -21,13 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
         removeButton.addEventListener('click', () => {
             newItem.remove(); // Remove o item atual
         });
-       
     };
 
-
+    // Função para calcular e fazer o POST para a API
     const calcular = async () => {
         const formData = new FormData(document.getElementById('produtosForm'));
         const data = [];
+
+        // Limpar resultados anteriores antes de exibir novos
+        const resultContainer = document.getElementById('resultContainer');
+        resultContainer.innerHTML = '';
 
         spinner.classList.remove('hidden');
         messageContainer.classList.add('hidden');
@@ -48,12 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Interromper a função se não houver itens
         }
     
-    
         const body = {
             products: data
         };
     
-        console.log("Dados enviados:", body);        // Enviar dados para o endpoint
+        console.log("Dados enviados:", body);
+
+        // Enviar dados para o endpoint
         try {
             const response = await fetch('/calcular', {
                 method: 'POST',
@@ -64,18 +70,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const result = await response.json();
             console.log(result);
-            exibirResultados(result);
+
+            // Verificar se a API retornou um array vazio ou ingredientes não encontrados
+            if (result.ingredients.length === 0) {
+                messageText.textContent = 'Nenhum ingrediente encontrado para os itens informados.';
+                messageContainer.classList.remove('hidden');
+            } else {
+                exibirResultados(result);
+            }
         } catch (error) {
             console.error('Error:', error);
+            messageText.textContent = 'Ocorreu um erro ao tentar calcular. Tente novamente.';
+            messageContainer.classList.remove('hidden');
         } finally {
             spinner.classList.add('hidden');
         }
     };
 
-    document.getElementById('closeMessage').addEventListener('click', () => {
-        document.getElementById('messageContainer').classList.add('hidden');
-    });
-
+    // Função para exibir os resultados na página
     const exibirResultados = (result) => {
         const resultContainer = document.getElementById('resultContainer');
         resultContainer.innerHTML = ''; // Limpar resultados anteriores
@@ -89,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <th>Peso (g)</th>
                     <th>Calorias (kcal)</th>
                     <th>Carboidratos (g)</th>
-                    <th>Proteina (g)</th>
+                    <th>Proteína (g)</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,11 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2>Nutrientes totais</h2>
             <p>Calorias: ${result.totalNutrients.energy} kcal</p>
             <p>Carboidrato: ${result.totalNutrients.carbohydrate} g</p>
-            <p>Proteina: ${result.totalNutrients.protein} g</p>
+            <p>Proteína: ${result.totalNutrients.protein} g</p>
         `;
         resultContainer.appendChild(totalNutrientsDiv);
     };
-    
+
+    document.getElementById('closeMessage').addEventListener('click', () => {
+        document.getElementById('messageContainer').classList.add('hidden');
+    });
+
     // Adicionar event listeners
     document.getElementById('adicionar').addEventListener('click', adicionarItem);
     document.getElementById('calcular').addEventListener('click', calcular);
