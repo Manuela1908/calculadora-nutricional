@@ -19,9 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         formContainer.appendChild(newItem);
 
+        
         const removeButton = newItem.querySelector('.remover');
         removeButton.addEventListener('click', () => {
-            newItem.remove(); // Remove o item atual
+            removeButton.classList.add('remover-clicked');
+
+            if (window.innerWidth <= 767) {
+                // Define um atraso antes de remover o item somente para dispositivos móveis
+                setTimeout(() => {
+                    newItem.remove(); // Remove o item atual
+                }, 300); // Ajuste o tempo do delay conforme necessário (300 ms = 0.3 s)
+            } else {
+                // Remove o item imediatamente para telas maiores
+                newItem.remove();
+            }
         });
     };
 
@@ -34,8 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultContainer = document.getElementById('resultContainer');
         resultContainer.innerHTML = '';
 
+
         spinner.classList.remove('hidden');
         messageContainer.classList.add('hidden');
+
+        resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         // Iterar sobre os campos do formulário
         for (let i = 1; i <= itemCount; i++) {
@@ -84,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageContainer.classList.remove('hidden');
         } finally {
             spinner.classList.add('hidden');
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
 

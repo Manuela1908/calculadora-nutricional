@@ -8,11 +8,13 @@
     margin: 20px;
 }
 
-#produtosForm{
+/* Estilo para o formulário */
+#produtosForm {
     border: 2px solid #4CAF50;
     padding: 20px 5px 10px 5px;
     border-radius: 10px;
-    width: 60%;
+    width: 80%; /* Aumenta a largura do formulário */
+    max-width: 1200px; /* Limita a largura máxima para não exceder em telas grandes */
 }
 
 /* Estilo para o título */
@@ -42,17 +44,41 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: center; /* Alinha horizontalmente o conteúdo do formulário */
-    gap: 10px;
+    gap: 20px; /* Espaçamento maior entre itens dentro do formulário */
     margin-bottom: 50px;
     max-width: 100%; /* Garante que o formulário não ultrapasse o contêiner */
 }
 
+
+/* Estilo para o contêiner de itens do formulário */
+#formContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaçamento entre os itens do formulário (menor) */
+}
+
 .form-item {
     display: flex;
-    align-items: center; /* Alinha itens verticalmente no centro */
-    gap: 10px; /* Espaçamento entre os itens dentro do form-item */
-    width: 100%; /* Faz o item ocupar toda a largura do contêiner do formulário */
-    max-width: 600px; /* Limita a largura máxima dos itens do formulário */
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: center;
+    width: calc(33.333% - 20px); /* Ajuste conforme necessário */
+    box-sizing: border-box;
+}
+
+.form-item label {
+    margin-right: 5px; /* Espaço abaixo dos labels */
+    font-size: 14px; /* Ajusta o tamanho da fonte do label */
+}
+
+.form-item input {
+    margin-right: 10px; /* Espaço abaixo dos inputs */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 /* Estilo para os campos de entrada do formulário */
@@ -90,11 +116,12 @@ button {
     margin-left: 10px; /* Espaçamento à esquerda do botão */
 }
 
-.remover:hover{
+.remover:hover {
     background-color: #f80707;
     background-image: url('lixeira-aberta.png');
     background-size: 30px 30px;
 }
+
 
 /* Estilo para o botão ao passar o mouse */
 button:hover {
@@ -105,7 +132,6 @@ button:hover {
 #resultContainer {
     margin: 20px;
     position: relative; /* O spinner agora será posicionado relativo a essa div */
-
 }
 
 /* Estilo para a tabela */
@@ -149,6 +175,7 @@ table tr:hover {
 #totalNutrients p {
     margin: 5px 0;
 }
+
 .spinner {
     width: 40px; /* Tamanho do spinner */
     height: 40px;
@@ -188,8 +215,6 @@ table tr:hover {
     max-width: 400px;
 }
 
-
-
 .close-button {
     background: none;
     border: none;
@@ -204,4 +229,91 @@ table tr:hover {
 
 .hidden {
     display: none;
+}
+
+/* Ajustes para telas grandes */
+@media (min-width: 1024px) {
+    #formContainer {
+        justify-content: space-between; /* Distribui os itens ao longo do contêiner */
+    }
+
+    .form-item {
+        width: calc(80% - 20px); /* Largura de aproximadamente um quarto do contêiner, considerando o espaçamento */
+        min-width: 300px; /* Aumenta a largura mínima para garantir que os itens não fiquem muito pequenos */
+    }
+}
+/* Ajustes para telas pequenas */
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
+    #produtosForm {
+        width: 100%; /* Ajusta a largura do formulário para ocupar toda a tela */
+        padding: 10px; /* Ajusta o padding para se adequar a telas menores */
+    }
+
+    #formContainer {
+        flex-direction: column; /* Alinha os itens em coluna para telas pequenas */
+        gap: 10px; /* Ajusta o espaço entre os itens */
+        width: 100%; /* Faz com que o contêiner de itens ocupe toda a largura */
+    }
+
+    .form-item {
+        width: 100%; /* Faz com que cada item ocupe a largura total do contêiner */
+        display: flex;
+        flex-direction: column; /* Alinha os elementos internamente em coluna */
+        padding: 10px;
+        height: auto; /* Ajusta a altura para se adaptar ao conteúdo */
+        box-sizing: border-box; /* Garante que o padding e a borda sejam incluídos na largura total */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .form-item label {
+        font-size: 14px; /* Ajusta o tamanho da fonte do label */
+        margin-bottom: 5px; /* Espaço abaixo dos labels */
+        display: block; /* Faz com que o label ocupe a linha inteira */
+    }
+
+    .form-item input {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px; /* Espaço abaixo dos inputs */
+        width: calc(100% - 20px); /* Faz com que o input ocupe quase toda a largura do contêiner, considerando o padding */
+    }
+
+    .form-item button {
+        width: 100%; /* Faz com que o botão ocupe a largura total do contêiner */
+        margin: 10px 0; /* Adiciona margem em cima e embaixo do botão */
+        padding: 10px; /* Ajusta o padding para se adequar ao layout */
+    }
+
+    .remover {
+        width: 30px; /* Largura menor para o botão de remoção */
+        height: 30px; /* Altura menor para o botão de remoção */
+        background-color: #f80707; /* Cor de fundo */
+        background-image: url('lixeira-fechada.png'); /* Imagem de fundo */
+        background-size: 15px 15px; /* Ajusta o tamanho da imagem */
+        background-repeat: no-repeat; /* Evita que a imagem se repita */
+        background-position: center; /* Centraliza a imagem */
+        border: none; /* Remove a borda padrão do botão */
+        border-radius: 5px; /* Bordas arredondadas (opcional) */
+        cursor: pointer; /* Muda o cursor quando passa sobre o botão */
+        padding: 0; /* Remove padding interno */
+        margin-left: 0; /* Remove o espaço à esquerda do botão */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .remover:hover {
+        background-image: url('lixeira-aberta.png');
+        background-size: 15px 15px; /* Ajusta o tamanho da imagem ao passar o mouse */
+    }
+
+    .remover-clicked {
+        background-image: url('lixeira-aberta.png'); /* Imagem que aparece quando o botão é clicado */
+        background-size: 25px 25px;
+    }
 }
