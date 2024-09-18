@@ -21,7 +21,6 @@
 h1 {
     color: #01a17f;
     text-align: center;
-    margin-bottom: 20px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -113,7 +112,7 @@ button {
     border-radius: 5px; /* Bordas arredondadas (opcional) */
     cursor: pointer; /* Muda o cursor quando passa sobre o botão */
     padding: 0; /* Remove padding interno */
-    margin-left: 10px; /* Espaçamento à esquerda do botão */
+    margin-left: 20px; /* Espaçamento à esquerda do botão */
 }
 
 .remover:hover {
@@ -122,6 +121,18 @@ button {
     background-size: 30px 30px;
 }
 
+.info {
+    border-radius: 50px;
+    background-color: #7a94ec;
+    padding: 5px 10px;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.info:hover {
+    background-color: #073ff8;
+    
+}
 
 /* Estilo para o botão ao passar o mouse */
 button:hover {
@@ -239,6 +250,59 @@ table tr:hover {
 .hidden {
     display: none;
 }
+/* Estilos para o popup */
+.tooltip {
+    font-family: 'Roboto', sans-serif;
+    display: none;
+    position: fixed;
+    background-color: #0c87ec;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    max-width: 500px;
+    font-size: 14px;
+}
+
+.tooltip li{
+    margin-bottom: 20px;
+}
+.titulo {
+    display: flex;
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: center; /* Centraliza horizontalmente */
+    gap: 10px; /* Espaçamento entre os itens (opcional) */
+    line-height: 1; /* Ajuste conforme necessário */
+    margin-bottom: 20px;
+}
+
+.titulo button {
+    display: flex;
+    align-items: center; /* Alinha o conteúdo do botão verticalmente */
+    justify-content: center; /* Centraliza o conteúdo do botão horizontalmente */
+}
+
+select{
+    margin-right: 10px; /* Espaço abaixo dos inputs */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.titulo h1, .titulo h2, .titulo h4 {
+    margin: 0; /* Remove margens que podem estar causando desalinhamento */
+    line-height: 1.2; /* Ajusta a altura da linha para alinhamento vertical adequado */
+}
+.tooltip::after {
+    content: '';
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fffbfb transparent transparent transparent;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+}
+
 
 /* Ajustes para telas grandes */
 @media (min-width: 1024px) {

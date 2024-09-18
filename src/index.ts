@@ -45,11 +45,11 @@ const getNutrientValueById = (nutrients: any[], nutrientId: number) => {
 
     // Iterar sobre cada ingrediente e fazer a requisição
     for (const product of products) {
-        const { name, weight } = product; // Assume que product tem as propriedades name e weight
+        const { name, weight, type } = product; // Assume que product tem as propriedades name e weight
         const url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${token}&query=${name}`;
         const config = {
             params: {
-                dataType: "Foundation",
+                dataType: type,
                 pageSize: 1,
                 pageNumber: 1
             }

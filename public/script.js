@@ -4,6 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageContainer = document.getElementById('messageContainer');
     const messageText = document.getElementById('messageText');
 
+    const tooltip = document.createElement('div');
+    tooltip.classList.add('tooltip');
+    tooltip.style.display = 'none'; 
+    tooltip.innerHTML = `
+        <p><strong>Nome:</strong> nome do produto (por favor seja específico e digite em inglês)</p>
+        <p><strong>Peso:</strong> peso do produto em gramas</p>
+        <p><strong>Tipo de Produto:</strong></p>
+        <ul>
+            <li><strong>Básico:</strong> produtos em forma básica e amplamente consumidos, base da alimentação.<br>Exemplo: frutas, vegetais frescos, ovos, grãos, leites e derivados.</li>
+            <li><strong>Tradicional:</strong> Produtos preparados, também inclui alimentos tradicionais de determinadas nacionalidades. <br>Exemplo: cereais prontos, alimentos enlatados, cozidos, fritos e de restaurantes.</li>
+        </ul>
+    `;
+    document.body.appendChild(tooltip);
     // Função para adicionar novo formulário
     const adicionarItem = () => {
         itemCount++;
@@ -15,10 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" id="nome-${itemCount}" name="nome-${itemCount}" required>
             <label for="peso-${itemCount}">Peso (g)</label>
             <input type="number" id="peso-${itemCount}" name="peso-${itemCount}" required>
+            <label for="tipo-produto-${itemCount}">Tipo de Produto</label>
+            <select id="tipo-produto-${itemCount}" name="tipo-produto-${itemCount}" required>
+                <option value="basico">Básico</option>
+                <option value="tradicional">Tradicional</option>
+            </select>
             <button type="button" class="remover"></button>
         `;
         formContainer.appendChild(newItem);
-
+        
         
         const removeButton = newItem.querySelector('.remover');
         removeButton.addEventListener('click', () => {
@@ -35,6 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+
+    const showTooltip = (event) => {
+        const rect = event.target.getBoundingClientRect();
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${rect.left + window.scrollX + 20}px`; // Ajusta a posição do popup
+        tooltip.style.top = `${rect.top + window.scrollY}px`;
+    };
+
+    // Função para esconder a tooltip
+    const hideTooltip = () => {
+        tooltip.style.display = 'none';
+    };
+
+    // Adiciona a tooltip ao botão de info
+    const addTooltipEvents = () => {
+        const infoButtons = document.querySelectorAll('.info');
+        infoButtons.forEach(button => {
+            button.addEventListener('mouseover', showTooltip);
+            button.addEventListener('mouseout', hideTooltip);
+        });
+    };
+
 
     // Função para calcular e fazer o POST para a API
     const calcular = async () => {
@@ -55,8 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 1; i <= itemCount; i++) {
             const nome = formData.get(`nome-${i}`);
             const peso = formData.get(`peso-${i}`);
+            let tipo = formData.get(`tipo-produto-${i}`);
+
+            if(tipo == "basico"){
+                tipo = "Foundation";
+            } else{
+                tipo = "SR Legacy";
+            }
+
             if (nome && peso) {
-                data.push({ name: nome, weight: parseFloat(peso) });
+                data.push({ name: nome, weight: parseFloat(peso), type: tipo });
             }
         }
 
@@ -155,4 +203,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adicionar event listeners
     document.getElementById('adicionar').addEventListener('click', adicionarItem);
     document.getElementById('calcular').addEventListener('click', calcular);
+    addTooltipEvents();
 });

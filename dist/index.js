@@ -26,23 +26,6 @@ const getNutrientValueById = (nutrients, nutrientId) => {
     return nutrient ? nutrient.value : null;
 };
 app.use(express_1.default.static(path_1.default.join(__dirname, '../public')));
-app.get('/sugestoes', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { query } = req.query;
-    if (typeof query !== 'string') {
-        return res.status(400).json({ error: 'Invalid query parameter' });
-    }
-    try {
-        const response = yield axios_1.default.get(`https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${token}&query=${encodeURIComponent(query)}`);
-        const data = response.data;
-        // Supondo que a resposta contenha uma lista de sugestões
-        const suggestions = data.foods.map((food) => food.description);
-        res.json({ suggestions: suggestions.slice(0, 5) });
-    }
-    catch (error) {
-        console.error('Error fetching suggestions:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-}));
 app.get('/', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, '../public/view/index.html'));
 });
@@ -65,11 +48,11 @@ app.post('/calcular', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     };
     // Iterar sobre cada ingrediente e fazer a requisição
     for (const product of products) {
-        const { name, weight } = product; // Assume que product tem as propriedades name e weight
+        const { name, weight, type } = product; // Assume que product tem as propriedades name e weight
         const url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${token}&query=${name}`;
         const config = {
             params: {
-                dataType: "Foundation",
+                dataType: type,
                 pageSize: 1,
                 pageNumber: 1
             }
